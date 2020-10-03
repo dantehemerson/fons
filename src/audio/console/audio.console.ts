@@ -1,52 +1,51 @@
-import { Command, Console, createSpinner } from 'nestjs-console'
+import * as inquirer from 'inquirer'
+import Choice from 'inquirer/lib/objects/choice'
+import { Command, Console } from 'nestjs-console'
 import { PulseAudioService } from '../services/pulseaudio.service'
 
-@Console()
+@Console({
+  name: 'audio',
+  alias: 'a',
+  description: 'Control output and input audio devices'
+})
 export class AudioConsole {
   constructor(private readonly pulseAudioService: PulseAudioService) {}
 
   @Command({
-    command: 'list',
-    description: 'List all available output devices'
+    command: 'choose-ouput',
+    alias: 'co',
+    description: 'Choose default ouput device'
   })
-  async listDevices(): Promise<void> {
-    // See Ora npm package for details about spinner
-    const spin = createSpinner()
-    spin.start(`Listing devices`)
+  async listDevices() {
+    const sinks = this.pulseAudioService.listSinks()
+    const sinksChoices: Partial<Choice>[] = sinks.map(sink => ({
+      name: `${sink.id} - ${sink.name}`,
+      value: sink.id
+    }))
 
-    this.pulseAudioService.listSinks()
+    const { outputDevice } = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'outputDevice',
+        message: '🔊 Choose ouput device:',
+        choices: sinksChoices
+      }
+    ])
 
-    spin.succeed('Listing done')
+    this.pulseAudioService.setDefaultOutput(outputDevice)
   }
 
   @Command({
-    command: 'set <id>',
+    command: 'set-ouput <id>',
+    alias: 'so',
     description: 'Set default output device'
   })
   async setDefaultOuput(id: string): Promise<void> {
-    // See Ora npm package for details about spinner
-    const spin = createSpinner()
-
     try {
       this.pulseAudioService.setDefaultOutput(id)
-      spin.succeed('Output default device changed to ' + id)
+      console.log('Output default device changed to ' + id)
     } catch (error) {
-      spin.fail('Error: ' + error.message)
+      console.error('Error: ' + error.message)
     }
-  }
-
-  @Command({
-    command: 'cui',
-    description: 'Set default output device'
-  })
-  cui(id: string) {
-    // See Ora npm package for details about spinner
-    const spin = createSpinner()
-
-    const res = this.pulseAudioService.cui()
-    console.log('Dante: AudioService -> constructor -> res\n', res)
-    return res
-
-    spin.succeed('Listing done')
   }
 }

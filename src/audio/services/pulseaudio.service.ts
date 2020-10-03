@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common'
-import { execSync, spawnSync, spawn, execFileSync } from 'child_process'
+import { execSync } from 'child_process'
 import { parseSinkLine } from '../helpers/parse-sink-line.helper'
+import { SinkData } from '../interfaces/sink-data'
 
 @Injectable()
 export class PulseAudioService {
   private pulseMixerPath = './external/pulsemixer'
 
-  listSinks() {
+  listSinks(): SinkData[] {
     const lines = this.exec('--list-sinks')
       .toString()
       .split('\n')
@@ -15,15 +16,7 @@ export class PulseAudioService {
   }
 
   setDefaultOutput(deviceId: string) {
-    return execSync(`pactl set-default-sink ${deviceId}`).toString()
-  }
-
-  cui() {
-    const child = execFileSync(this.pulseMixerPath)
-    // child.stdin.setEncoding('utf-8');
-
-    // process.stdout.pipe(child.stdout as any)
-    // process.stdin.pipe(child.stdin as any)
+    return execSync(`pactl set-default-sink ${deviceId}`)
   }
 
   private exec(commandArgs: string = '') {
