@@ -1,4 +1,4 @@
-import { NestFactory } from '@nestjs/core'
+#!/usr/bin/env node
 import { BootstrapConsole } from 'nestjs-console'
 import { AppModule } from './app.module'
 
