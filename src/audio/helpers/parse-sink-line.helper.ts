@@ -7,12 +7,13 @@ import { SinkData } from '../interfaces/sink-data'
 export function parseSinkLine(line: string): SinkData | null {
   const lineParts = line.split(',')
   const id = matchFirstOcurrence(lineParts, /ID: sink-(\d+)/i)
-  if (!id) return null
 
-  return {
-    id,
-    name: matchFirstOcurrence(lineParts, /Name:(.*)/)
-  }
+  return id
+    ? {
+        id,
+        name: matchFirstOcurrence(lineParts, /Name:(.*)/)
+      }
+    : null
 }
 
 /**
