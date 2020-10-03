@@ -1,6 +1,6 @@
 {
   "name": "fons",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Control Ubuntu by CLI like a pro",
   "author": "Dante Calderon <mail@dantecalderon.dev> (https://dantecalderon.dev)",
   "main": "dist/main.js",
