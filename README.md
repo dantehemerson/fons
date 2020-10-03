@@ -4,9 +4,9 @@
 
 Fons is a CLI that helps you to control Ubuntu like a pro.
 
-## Features
+## Commands
 
-### Command
+### Audio
   Control output and input audio devices
   Usage: `fons audio|a [options] [command]`
 
@@ -22,6 +22,6 @@ Fons is a CLI that helps you to control Ubuntu like a pro.
 
   * `set-ouput|so <id>` Set default output device
 
-# LICENCE
+## LICENCE
 
 MIT
