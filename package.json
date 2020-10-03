@@ -1,12 +1,26 @@
 {
   "name": "fons",
-  "version": "0.0.2",
+  "version": "0.0.0",
   "description": "Control Ubuntu by CLI like a pro",
   "author": "Dante Calderon <mail@dantecalderon.dev> (https://dantecalderon.dev)",
   "main": "dist/main.js",
   "bin": {
     "fons": "dist/main.js",
     "fonsmix": "external/pulsemixer"
+  },
+  "keywords": [
+    "cli",
+    "ubuntu",
+    "commander",
+    "controller",
+    "cli-app"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dantehemerson/fons.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dantehemerson/fons/issues"
   },
   "license": "MIT",
   "scripts": {

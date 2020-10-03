@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master # Change this to your default branch
-      - feaure/select-output-device
 jobs:
   npm-publish:
     name: npm-publish
