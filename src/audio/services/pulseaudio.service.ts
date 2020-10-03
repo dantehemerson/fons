@@ -2,10 +2,11 @@ import { Injectable } from '@nestjs/common'
 import { execSync } from 'child_process'
 import { parseSinkLine } from '../helpers/parse-sink-line.helper'
 import { SinkData } from '../interfaces/sink-data'
+import { join } from 'path'
 
 @Injectable()
 export class PulseAudioService {
-  private pulseMixerPath = './external/pulsemixer'
+  private readonly pulseMixerPath = join(__dirname, '../../../external/pulsemixer')
 
   listSinks(): SinkData[] {
     const lines = this.exec('--list-sinks')
