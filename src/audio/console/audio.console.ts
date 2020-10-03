@@ -14,7 +14,7 @@ export class AudioConsole {
   @Command({
     command: 'choose-ouput',
     alias: 'co',
-    description: 'Choose default ouput device'
+    description: 'Choose default ouput audio device'
   })
   async listDevices() {
     const sinks = this.pulseAudioService.listSinks()
@@ -27,7 +27,7 @@ export class AudioConsole {
       {
         type: 'list',
         name: 'outputDevice',
-        message: '🔊 Choose ouput device:',
+        message: '🔊 Choose ouput audio device:',
         choices: sinksChoices
       }
     ])
@@ -38,7 +38,7 @@ export class AudioConsole {
   @Command({
     command: 'set-ouput <id>',
     alias: 'so',
-    description: 'Set default output device'
+    description: 'Set default output audio device'
   })
   async setDefaultOuput(id: string): Promise<void> {
     try {
