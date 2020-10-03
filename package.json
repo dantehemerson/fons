@@ -8,6 +8,10 @@
     "fons": "dist/main.js",
     "fonsmix": "external/pulsemixer"
   },
+  "files": [
+    "dist",
+    "external"
+  ],
   "keywords": [
     "cli",
     "ubuntu",
