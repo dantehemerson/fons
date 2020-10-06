@@ -23,6 +23,19 @@ Fons is a CLI that helps you to control Ubuntu like a pro.
 
   * `set-ouput|so <id>` Set default output device
 
+### Network
+  Network information
+
+  Usage: `fons network|n [options] [command]`
+
+  Options:
+
+`-h, --help`  display help for command
+
+  **Sub Commands**:
+  
+  * `password|p`  Get Wifi password 
+
 ## LICENCE
 
 MIT
