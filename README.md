@@ -36,6 +36,12 @@ Fons is a CLI that helps you to control Ubuntu like a pro.
   
   * `password|p`  Get Wifi password 
 
+## System Info
+To get system information for bug reports, run
+```sh
+    npm run info
+```
+
 ## LICENCE
 
 MIT
